@@ -3,10 +3,14 @@ project(BlastOff VERSION 1.0.0)
 
 add_compile_options(--config /Users/vijay/cpp/.config/clang++_config.txt)
 add_link_options(--config /Users/vijay/cpp/.config/clang++_config.txt)
+
+include_directories(../src/sensor)
 link_libraries(
     -lfmt
 )
+
 add_executable(
     main
     main.cpp
+    ../src/sensor/sensor.cpp
 )
