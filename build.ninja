@@ -1,0 +1,32 @@
+ninja_required_version = 1.10
+ 
+root = .
+target = test
+bdir = $root/build
+builddir = $root/build/ninja
+sdir = $root/src
+
+fmt_hdr = /mnt/d/cpp/.config/usr/local/include
+fmt_lib = /mnt/d/cpp/.config/usr/local/lib
+sensor_hdr = $root/src/sensor
+
+cxx = /usr/bin/clang++-10
+cxx_flags = -std=c++17 -Wall -O3 -I $fmt_hdr -I $sensor_hdr
+
+ld_flags = $cxx_flags -L $fmt_lib
+libs = -lfmt
+
+rule cxx
+    command = $cxx -MMD -MT $out -MF $out.d $cxx_flags -c $in -o $out
+    description = CXX $out
+    depfile = $out.d
+    deps = gcc
+
+rule link
+    command = $cxx $ld_flags -o $out $in $libs
+    description = LINK $out
+
+build $bdir/main.o: cxx $sdir/main.cpp
+build $bdir/sensor.o: cxx $sdir/sensor/sensor.cpp
+
+build $bdir/$target: link $bdir/main.o $bdir/sensor.o
