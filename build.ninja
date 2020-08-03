@@ -8,11 +8,12 @@ sdir = $root/src
 
 fmt_hdr = /mnt/d/cpp/.config/usr/local/include
 fmt_lib = /mnt/d/cpp/.config/usr/local/lib
-sensor_hdr = $root/src/sensor
 gui_hdr = $root/src/gui
+accelerometer_hdr = $root/src/sensors/accelerometer
 
 cxx = /usr/bin/clang++-10
-cxx_flags = -std=c++17 -Wall -O3 $$(pkg-config --cflags --libs gtkmm-3.0) -I $fmt_hdr -I $sensor_hdr -I $gui_hdr
+cxx_flags = -std=c++17 -Wall -O3 $$(pkg-config --cflags --libs gtkmm-3.0) -I $fmt_hdr -I $gui_hdr $
+    -I $accelerometer_hdr 
 
 ld_flags = $cxx_flags -L $fmt_lib
 libs = -lfmt
@@ -27,8 +28,9 @@ rule link
     command = $cxx $ld_flags -o $out $in $libs
     description = LINK $out
 
-build $bdir/main.o: cxx $sdir/main.cpp
-build $bdir/sensor.o: cxx $sdir/sensor/sensor.cpp
-build $bdir/blastoff.o: cxx $sdir/gui/blastoff.cpp
+build $bdir/main.o: cxx $sdir/main.cc
+build $bdir/accelerometer.o: cxx $sdir/sensors/accelerometer/accelerometer.cc
+build $bdir/blastoff.o: cxx $sdir/gui/blastoff.cc
 
-build $bdir/$target: link $bdir/main.o $bdir/sensor.o $bdir/blastoff.o
+build $bdir/$target: link $bdir/main.o $bdir/blastoff.o $
+    $bdir/accelerometer.o

@@ -2,7 +2,7 @@
 #include <ctime>
 #include <unistd.h>
 #include <gtkmm/application.h>
-#include "sensor.h"
+#include "accelerometer.h"
 #include "blastoff.h"
 
 using fmt::print;
