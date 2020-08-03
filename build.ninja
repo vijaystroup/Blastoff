@@ -5,11 +5,12 @@ target = BlastOff
 bdir = $root/build
 builddir = $root/build/ninja
 sdir = $root/src
+sensorsdir = $root/src/sensors
 
 fmt_hdr = /mnt/d/cpp/.config/usr/local/include
 fmt_lib = /mnt/d/cpp/.config/usr/local/lib
 gui_hdr = $root/src/gui
-accelerometer_hdr = $root/src/sensors/accelerometer
+accelerometer_hdr = $sensorsdir/accelerometer
 
 cxx = /usr/bin/clang++-10
 cxx_flags = -std=c++17 -Wall -O3 $$(pkg-config --cflags --libs gtkmm-3.0) -I $fmt_hdr -I $gui_hdr $
@@ -29,7 +30,7 @@ rule link
     description = LINK $out
 
 build $bdir/main.o: cxx $sdir/main.cc
-build $bdir/accelerometer.o: cxx $sdir/sensors/accelerometer/accelerometer.cc
+build $bdir/accelerometer.o: cxx $sensorsdir/accelerometer/accelerometer.cc
 build $bdir/blastoff.o: cxx $sdir/gui/blastoff.cc
 
 build $bdir/$target: link $bdir/main.o $bdir/blastoff.o $

@@ -1,20 +1,22 @@
 #ifndef BLASTOFF_H
 #define BLASTOFF_H
 
-#include <gtkmm/button.h>
-#include <gtkmm/window.h>
+#include <gtkmm/drawingarea.h>
 
-class Blastoff : public Gtk::Window {
+class Clock : public Gtk::DrawingArea {
 public:
-    Blastoff();
-    virtual ~Blastoff();
+    Clock();
+    virtual ~Clock();
 
 protected:
-    //Signal handlers:
-    void on_button_clicked();
+    //Override default signal handler:
+    bool on_draw(const Cairo::RefPtr<Cairo::Context>& cr) override;
 
-    //Member widgets:
-    Gtk::Button m_button;
+    bool on_timeout();
+
+    double m_radius;
+    double m_line_width;
+
 };
 
 #endif
