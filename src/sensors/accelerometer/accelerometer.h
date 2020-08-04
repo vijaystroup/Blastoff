@@ -7,10 +7,10 @@ class accelerometer {
 private:
     std::string name;
     int data;
-    int min, max;
 
 public:
-    accelerometer(std::string name, int min, int max);
+    // constructor
+    accelerometer(std::string name);
 
     // name
     std::string get_name();
@@ -18,8 +18,9 @@ public:
 
     // data
     int get_data();
-    void set_data();
+    void set_data(int cur_time);
 
+    // to_string
     std::string to_string();
 };
 
