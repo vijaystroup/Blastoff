@@ -8,12 +8,12 @@ sdir = $root/src
 sensorsdir = $sdir/sensors
 guidir = $sdir/gui
 
-fmt_hdr = /mnt/d/cpp/.config/usr/local/include
-fmt_lib = /mnt/d/cpp/.config/usr/local/lib
+fmt_hdr = ~/.source/include
+fmt_lib = ~/.source/lib
 sensors_hdr = $sensorsdir/include
 gui_hdr = $guidir/include
 
-cxx = /usr/bin/clang++-10
+cxx = /usr/bin/clang++
 cxx_flags = -std=c++17 -Wall -O3 $$(pkg-config --cflags --libs gtkmm-3.0) -I $fmt_hdr $
     -I $sensors_hdr -I $gui_hdr
 
