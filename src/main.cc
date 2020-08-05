@@ -1,13 +1,8 @@
 #include <gtkmm.h>
 #include <string.h>
+#include "setup.h"
 
 using std::string;
-
-
-void on_button_clicked(Gtk::Button* pButton) {
-    printf("hehe\n");
-    pButton->hide();
-}
 
 int main(int argc, char *argv[]) {
     Gtk::Window* win;
@@ -23,13 +18,8 @@ int main(int argc, char *argv[]) {
     // add the glade window and widgets
     refBuilder->get_widget("window", win);
     if (win) {
-        // setup gui
-        Gtk::Button *button_launch = nullptr;
-        refBuilder->get_widget("button_launch", button_launch);
-        if (button_launch) {
-            button_launch->signal_clicked().connect(sigc::bind(sigc::ptr_fun(&on_button_clicked), button_launch));
-        }
-
+        // setup gui and run app
+        setup(refBuilder);
         app->run(*win);
     }
 
