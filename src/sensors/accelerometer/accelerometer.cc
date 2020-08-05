@@ -15,16 +15,14 @@ void accelerometer::set_name(string name) { this->name = name; }
 
 // data
 int accelerometer::get_data() { return this->data; }
-void accelerometer::set_data(int cur_time) {
-    // this->data = this->min + (rand() % (this->max - this->min + 1));
-
-    if (cur_time < 0)
+void accelerometer::set_data(int timer) {
+    if (timer < 0)
         this->data = 0;
     else {
-        if (cur_time <= 10)
+        if (timer <= 10)
             this->data = 100;
-        else if (cur_time >= 11 && cur_time < 25)
-            this->data = (1 / (cur_time * 0.1)) * 100;
+        else if (timer >= 11 && timer < 25)
+            this->data = (1 / (timer * 0.1)) * 100;
         else
             this->data = 0;
     }

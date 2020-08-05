@@ -5,13 +5,14 @@
 using std::string;
 
 int main(int argc, char *argv[]) {
-    Gtk::Window* win;
+    Gtk::Window* win = nullptr;
+    string glade_file = "src/gui/outline.glade";
+    string app_identifier = "com.vijaystroup.BlastOff";
     
     // create application
-    auto app = Gtk::Application::create(argc, argv, "com.vijaystroup.BlastOff");
+    auto app = Gtk::Application::create(argc, argv, app_identifier);
 
     // get the refrence builder
-    string glade_file = "src/gui/outline.glade";
     auto refBuilder = Gtk::Builder::create();
     refBuilder->add_from_file(glade_file);
 

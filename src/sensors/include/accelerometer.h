@@ -18,7 +18,7 @@ public:
 
     // data
     int get_data();
-    void set_data(int cur_time);
+    void set_data(int timer);
 
     // to_string
     std::string to_string();

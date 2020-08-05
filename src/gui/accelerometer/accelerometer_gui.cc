@@ -10,7 +10,7 @@ int cur_time = 0;
 accelerometer acc("acceleration");
 
 Accelerometer_Gui::Accelerometer_Gui() : m_radius(0.42), m_line_width(0.01) {
-    Glib::signal_timeout().connect(sigc::mem_fun(*this, &Accelerometer_Gui::on_timeout), 1000);
+    Glib::signal_timeout().connect(sigc::mem_fun(*this, &Accelerometer_Gui::on_timeout), 10000);
 }
 Accelerometer_Gui::~Accelerometer_Gui() {}
 
@@ -96,7 +96,6 @@ bool Accelerometer_Gui::on_timeout() {
         Gdk::Rectangle r(0, 0, get_allocation().get_width(), get_allocation().get_height());
         win->invalidate_rect(r, false);
         acc.set_data(cur_time);
-        cur_time += 1;
     }
 
     if (cur_time >= 30)
