@@ -44,6 +44,7 @@ build $bdir/altimeter_gui.o: cxx $guidir/altimeter/altimeter_gui.cc
 build $bdir/barometer_gui.o: cxx $guidir/barometer/barometer_gui.cc
 build $bdir/thermometer_gui.o: cxx $guidir/thermometer/thermometer_gui.cc
 build $bdir/velocimeter_gui.o: cxx $guidir/velocimeter/velocimeter_gui.cc
+#build $bdir/timer.o: cxx $guidir/timer/timer.cc
 
 build $bdir/$target: link $bdir/main.o $bdir/setup.o $
     $bdir/accelerometer_gui.o $bdir/altimeter_gui.o $bdir/barometer_gui.o $bdir/thermometer_gui.o $bdir/velocimeter_gui.o $

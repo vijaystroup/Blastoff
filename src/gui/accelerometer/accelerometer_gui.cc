@@ -10,11 +10,15 @@ int cur_time = 0;
 accelerometer acc("acceleration");
 
 Accelerometer_Gui::Accelerometer_Gui() : m_radius(0.42), m_line_width(0.01) {
-    Glib::signal_timeout().connect(sigc::mem_fun(*this, &Accelerometer_Gui::on_timeout), 10000);
+    printf("In acc\n");
+    Glib::signal_timeout().connect(
+        sigc::mem_fun(*this, &Accelerometer_Gui::on_timeout), 1000
+    );
 }
 Accelerometer_Gui::~Accelerometer_Gui() {}
 
 bool Accelerometer_Gui::on_draw(const Cairo::RefPtr<Cairo::Context> &cr) {
+    printf("in draw\n");
     Gtk::Allocation allocation = get_allocation();
     const int width = allocation.get_width();
     const int height = allocation.get_height();
@@ -90,6 +94,7 @@ bool Accelerometer_Gui::on_draw(const Cairo::RefPtr<Cairo::Context> &cr) {
 
 
 bool Accelerometer_Gui::on_timeout() {
+    printf("in timeout\n");
     // force our program to redraw the entire Accelerometer_Gui.
     auto win = get_window();
     if (win) {

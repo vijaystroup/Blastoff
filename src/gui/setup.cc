@@ -5,21 +5,25 @@
 
 int timer = -5;
 
+Accelerometer_Gui acc_gui;
 
 void run(Gtk::Label* label_timer) {
-    Accelerometer_Gui acc_gui;
-    // auto win = get_window();
+    // Gtk::Container* win = static_cast<Gtk::Container*>(label_timer->get_parent());
+    // win->add(acc_gui);
+    // acc_gui.show();
 
-    while (timer <= 30) {
-        if (timer <= 0)
-            label_timer->set_text("T-" + std::to_string(timer));
-        else
-            label_timer->set_text("T+" + std::to_string(timer));
+    // while (timer <= 30) {
+    //     if (timer <= 0)
+    //         label_timer->set_text("T-" + std::to_string(timer));
+    //     else
+    //         label_timer->set_text("T+" + std::to_string(timer));
 
-        printf("time %d\n", timer);
-        sleep(1);
-        timer++;
-    }
+    //     printf("time %d\n", timer);
+    //     sleep(1);
+    //     timer++;
+    // }
+    printf("time %d\n", timer);
+    timer++;
     printf("done\n");
 }
 
@@ -27,7 +31,10 @@ void launch_clicked(Gtk::Button* button_launch, Gtk::Label* label_timer) {
     printf("launch\n");
     button_launch->hide();
     label_timer->show();
-    run(label_timer);
+    // g_timeout_add_seconds(1, (GSourceFunc)run, label_timer);
+    // timeout_add()
+    // gtk_widget_queue_draw(1, )
+    // run(label_timer);
 }
 
 void setup(Glib::RefPtr<Gtk::Builder> &refBuilder) {
@@ -59,8 +66,16 @@ void setup(Glib::RefPtr<Gtk::Builder> &refBuilder) {
     refBuilder->get_widget("button_launch", button_launch);
     refBuilder->get_widget("label_timer", label_timer);
 
+    // draw_acc->queue_draw();
+
     // connect launch button
     button_launch->signal_clicked().connect(
-        sigc::bind(sigc::ptr_fun(&launch_clicked), button_launch, label_timer)
+        sigc::bind(sigc::ptr_fun(&launch_clicked),
+            button_launch, label_timer
+        )
     );
+    
+    // draw_acc->signal_draw().connect(
+    //     sigc::ptr_fun(&acc_gui.on_draw);
+    // );
 }
