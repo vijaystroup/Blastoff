@@ -4,14 +4,9 @@
 using std::string;
 
 // constructor
-accelerometer::accelerometer(string name) {
-    set_name(name);
+accelerometer::accelerometer() {
     this->data = 0;
 }
-
-// name
-string accelerometer::get_name() { return this->name; }
-void accelerometer::set_name(string name) { this->name = name; }
 
 // data
 int accelerometer::get_data() { return this->data; }
@@ -30,5 +25,5 @@ void accelerometer::set_data(int timer) {
 
 // to_string
 string accelerometer::to_string() {
-    return get_name() + ": " + std::to_string(get_data());
+    return "accelerometer: " + std::to_string(get_data());
 }

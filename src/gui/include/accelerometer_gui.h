@@ -8,9 +8,9 @@ public:
     Accelerometer_Gui();
     virtual ~Accelerometer_Gui();
 
+    bool on_draw(const Cairo::RefPtr<Cairo::Context> &cr) override;
 protected:
     //Override default signal handler
-    bool on_draw(const Cairo::RefPtr<Cairo::Context> &cr) override;
 
     bool on_timeout();
 

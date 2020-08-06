@@ -33,17 +33,17 @@ rule link
 build $bdir/main.o: cxx $sdir/main.cc
 build $bdir/setup.o: cxx $guidir/setup.cc
 ### sensors ###
-build $bdir/accelerometer.o: cxx $sensorsdir/accelerometer/accelerometer.cc
-build $bdir/altimeter.o: cxx $sensorsdir/altimeter/altimeter.cc
-build $bdir/barometer.o: cxx $sensorsdir/barometer/barometer.cc
-build $bdir/thermometer.o: cxx $sensorsdir/thermometer/thermometer.cc
-build $bdir/velocimeter.o: cxx $sensorsdir/velocimeter/velocimeter.cc
+build $bdir/accelerometer.o: cxx $sensorsdir/lib/accelerometer.cc
+build $bdir/altimeter.o: cxx $sensorsdir/lib/altimeter.cc
+build $bdir/barometer.o: cxx $sensorsdir/lib/barometer.cc
+build $bdir/thermometer.o: cxx $sensorsdir/lib/thermometer.cc
+build $bdir/velocimeter.o: cxx $sensorsdir/lib/velocimeter.cc
 ### gui ###
-build $bdir/accelerometer_gui.o: cxx $guidir/accelerometer/accelerometer_gui.cc
-build $bdir/altimeter_gui.o: cxx $guidir/altimeter/altimeter_gui.cc
-build $bdir/barometer_gui.o: cxx $guidir/barometer/barometer_gui.cc
-build $bdir/thermometer_gui.o: cxx $guidir/thermometer/thermometer_gui.cc
-build $bdir/velocimeter_gui.o: cxx $guidir/velocimeter/velocimeter_gui.cc
+build $bdir/accelerometer_gui.o: cxx $guidir/lib/accelerometer_gui.cc
+build $bdir/altimeter_gui.o: cxx $guidir/lib/altimeter_gui.cc
+build $bdir/barometer_gui.o: cxx $guidir/lib/barometer_gui.cc
+build $bdir/thermometer_gui.o: cxx $guidir/lib/thermometer_gui.cc
+build $bdir/velocimeter_gui.o: cxx $guidir/lib/velocimeter_gui.cc
 
 build $bdir/$target: link $bdir/main.o $bdir/setup.o $
     $bdir/accelerometer_gui.o $bdir/altimeter_gui.o $bdir/barometer_gui.o $bdir/thermometer_gui.o $bdir/velocimeter_gui.o $

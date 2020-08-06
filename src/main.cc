@@ -20,6 +20,7 @@ int main(int argc, char *argv[]) {
     refBuilder->get_widget("window", win);
     if (win) {
         // setup gui and run app
+        win->set_resizable(false);
         setup(refBuilder);
         app->run(*win);
     }
