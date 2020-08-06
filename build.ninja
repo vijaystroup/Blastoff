@@ -14,10 +14,10 @@ sensors_hdr = $sensorsdir/include
 gui_hdr = $guidir/include
 
 cxx = /usr/bin/clang++
-cxx_flags = -std=c++17 -Wall -O3 $$(pkg-config --cflags --libs gtkmm-3.0) -I $fmt_hdr $
-    -I $sensors_hdr -I $gui_hdr
+cxx_flags = -std=c++17 -Wall $$(pkg-config --cflags gtkmm-3.0) -I$fmt_hdr $
+    -I$sensors_hdr -I$gui_hdr
 
-ld_flags = $cxx_flags -L $fmt_lib
+ld_flags = $cxx_flags -L $fmt_lib $$(pkg-config --libs gtkmm-3.0)
 libs = -lfmt
 
 rule cxx
@@ -44,7 +44,6 @@ build $bdir/altimeter_gui.o: cxx $guidir/altimeter/altimeter_gui.cc
 build $bdir/barometer_gui.o: cxx $guidir/barometer/barometer_gui.cc
 build $bdir/thermometer_gui.o: cxx $guidir/thermometer/thermometer_gui.cc
 build $bdir/velocimeter_gui.o: cxx $guidir/velocimeter/velocimeter_gui.cc
-#build $bdir/timer.o: cxx $guidir/timer/timer.cc
 
 build $bdir/$target: link $bdir/main.o $bdir/setup.o $
     $bdir/accelerometer_gui.o $bdir/altimeter_gui.o $bdir/barometer_gui.o $bdir/thermometer_gui.o $bdir/velocimeter_gui.o $

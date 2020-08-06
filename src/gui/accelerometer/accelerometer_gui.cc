@@ -11,9 +11,7 @@ accelerometer acc("acceleration");
 
 Accelerometer_Gui::Accelerometer_Gui() : m_radius(0.42), m_line_width(0.01) {
     printf("In acc\n");
-    Glib::signal_timeout().connect(
-        sigc::mem_fun(*this, &Accelerometer_Gui::on_timeout), 1000
-    );
+    Glib::signal_timeout().connect(sigc::mem_fun(*this, &Accelerometer_Gui::on_timeout), 10000);
 }
 Accelerometer_Gui::~Accelerometer_Gui() {}
 
@@ -63,12 +61,12 @@ bool Accelerometer_Gui::on_draw(const Cairo::RefPtr<Cairo::Context> &cr) {
     // store the current time
     time_t rawtime;
     time(&rawtime);
-    struct tm * timeinfo = localtime (&rawtime);
+    // struct tm * timeinfo = localtime (&rawtime);
 
     // compute the angles of the indicators of our Accelerometer_Gui
-    double minutes = timeinfo->tm_min * M_PI / 30;
-    double hours = timeinfo->tm_hour * M_PI / 6;
-    double seconds= timeinfo->tm_sec * M_PI / 30;
+    // double minutes = timeinfo->tm_min * M_PI / 30;
+    // double hours = timeinfo->tm_hour * M_PI / 6;
+    // double seconds= timeinfo->tm_sec * M_PI / 30;
     double data = acc.get_data() * M_PI / 30;
 
     cr->save();
