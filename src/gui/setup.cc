@@ -1,13 +1,88 @@
-#include <gtkmm.h>
-#include <unistd.h>
+// #include "accelerometer_gui.h"
 #include <gtk/gtk.h>
+#include <cmath>
 #include <cairomm/context.h>
-#include <glibmm/main.h>
-#include "accelerometer_gui.h"
 
-using std::string;
+bool on_draw_1(const Cairo::RefPtr<Cairo::Context> &cr) {
+    printf("in draw\n");
 
-int timer = -5;
+    // constants
+    const int width = 250;
+    const int height = 150;
+    const double inset = 3.5;
+    const int radius = 100;
+
+    // properties
+    cr->translate(width/2, height/1.2);
+    cr->save();
+
+    // arc
+    cr->restore();
+    cr->set_source_rgb(0.8, 0.8, 0.8);
+    cr->arc(0, 0, radius, M_PI, 2 * M_PI);
+    cr->save();
+    cr->set_source_rgb(0.8, 0.8, 0.8); // lightgrey
+    cr->fill_preserve();
+    cr->restore();
+    cr->stroke_preserve();
+    cr->clip();
+
+    // ticks
+    for (int i = 6; i <= 12; i++) {
+        cr->set_source_rgb(0.0, 0.0, 0.0); // black
+
+        cr->save();
+        cr->set_line_cap(Cairo::LINE_CAP_ROUND);
+
+        cr->move_to(
+            (radius - inset) * cos(i * M_PI / 6),
+            (radius - inset) * sin(i * M_PI / 6)
+        );
+        cr->line_to (
+            radius * cos(i * M_PI / 6),
+            radius * sin(i * M_PI / 6)
+        );
+        cr->stroke();
+        cr->restore();
+    }
+
+    // needle
+    time_t rawtime;
+    time(&rawtime);
+    struct tm * timeinfo = localtime (&rawtime);
+
+    double seconds= timeinfo->tm_sec * M_PI / 30;
+    // double data = acc.get_data() * M_PI / 30;
+
+    cr->save();
+    cr->set_line_cap(Cairo::LINE_CAP_ROUND);
+    cr->save();
+    cr->set_source_rgb(0.0, 0.5, 1.0); // lightblue
+    cr->move_to(0, 0);
+    // cr->line_to(sin(0) * (radius * 0.95), -cos(0) * (radius * 0.95));
+    cr->line_to(sin(seconds) * (radius * 0.95), -cos(seconds) * (radius * 0.95));
+    cr->stroke();
+    cr->restore();
+
+    // dot
+    cr->arc(0, 0, width*.015, 0, 2 * M_PI);
+    cr->set_source_rgb(0.0, 0.5, 1.0); // lightblue
+    cr->fill();
+    cr->restore();
+
+    return true;
+}
+
+
+
+
+
+
+int timer = -3;
+
+
+
+
 
 bool run(Gtk::Label* label_timer) {
     timer++;
@@ -27,38 +102,27 @@ bool run(Gtk::Label* label_timer) {
     return true;
 }
 
-bool test(const Cairo::RefPtr<Cairo::Context> &cr, string method) {
-    Accelerometer_Gui acc_gui;
-
-    if (method == "draw")
-        printf("KEKW\n");
-    acc_gui.on_draw(cr);
-
+bool keep_test(Gtk::DrawingArea* draw_acc) {
+    printf("keep_test\n");
+    // draw_acc->signal_draw().connect(sigc::ptr_fun(&test));
+    draw_acc->queue_draw();
     return true;
 }
 
 void launch_clicked(Gtk::Button* button_launch, Gtk::Label* label_timer) {
-    
-    printf("launch\n");
+    printf("launch button\n");
     button_launch->hide();
+    label_timer->set_text("T" + std::to_string(timer));
     label_timer->show();
     g_timeout_add_seconds(1, (GSourceFunc)run, label_timer);
 }
 
-void setup(Glib::RefPtr<Gtk::Builder> &refBuilder) {
+void setup(GtkBuilder* refBuilder, app_widgets widgets) {
+    // connect widget signals
+    
+
+
     // init widgets
-    Gtk::DrawingArea* draw_acc = nullptr;
-    // Gtk::DrawingArea* draw_vel = nullptr;
-    // Gtk::DrawingArea* draw_pres = nullptr;
-    // Gtk::Label* label_data_acc = nullptr;
-    // Gtk::Label* label_data_vel = nullptr;
-    // Gtk::Label* label_data_pres = nullptr;
-    // Gtk::Label* label_data_alt = nullptr;
-    // Gtk::Label* label_data_temp = nullptr;
-    // Gtk::ProgressBar* progress_alt = nullptr;
-    // Gtk::ProgressBar* progress_temp = nullptr;
-    Gtk::Button* button_launch = nullptr;
-    Gtk::Label* label_timer = nullptr;
 
     // add refrence to widgets
     refBuilder->get_widget("draw_acc", draw_acc);
@@ -74,19 +138,5 @@ void setup(Glib::RefPtr<Gtk::Builder> &refBuilder) {
     refBuilder->get_widget("button_launch", button_launch);
     refBuilder->get_widget("label_timer", label_timer);
 
-    draw_acc->queue_draw();
-
-    // connect launch button
-    button_launch->signal_clicked().connect(
-        sigc::bind(sigc::ptr_fun(&launch_clicked),
-            button_launch, label_timer
-        )
-    );
-
-    draw_acc->signal_draw().connect(
-        sigc::bind(sigc::ptr_fun(&test),
-            "draw"
-        )
-    );
-    // g_timeout_add_seconds(1, (GSourceFunc)test, NULL);
+    
 }

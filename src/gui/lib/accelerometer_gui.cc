@@ -3,13 +3,10 @@
 #include <cairomm/context.h>
 #include <glibmm/main.h>
 #include "accelerometer_gui.h"
-#include "accelerometer.h"
 
-int cur_time = 0;
+int var = 0;
 
-// accelerometer acc;
-
-Accelerometer_Gui::Accelerometer_Gui() : m_radius(0.42), m_line_width(0.01) {
+Accelerometer_Gui::Accelerometer_Gui() {
     printf("In acc\n");
     Glib::signal_timeout().connect(sigc::mem_fun(*this, &Accelerometer_Gui::on_timeout), 1000);
 }
@@ -71,8 +68,8 @@ bool Accelerometer_Gui::on_draw(const Cairo::RefPtr<Cairo::Context> &cr) {
     cr->save();
     cr->set_source_rgb(0.0, 0.5, 1.0); // lightblue
     cr->move_to(0, 0);
-    cr->line_to(sin(0) * (radius * 0.95), -cos(0) * (radius * 0.95));
-    // cr->line_to(sin(seconds) * (radius * 0.95), -cos(seconds) * (radius * 0.95));
+    // cr->line_to(sin(0) * (radius * 0.95), -cos(0) * (radius * 0.95));
+    cr->line_to(sin(seconds) * (radius * 0.95), -cos(seconds) * (radius * 0.95));
     cr->stroke();
     cr->restore();
 
@@ -88,16 +85,6 @@ bool Accelerometer_Gui::on_draw(const Cairo::RefPtr<Cairo::Context> &cr) {
 
 bool Accelerometer_Gui::on_timeout() {
     printf("in timeout\n");
-    // force our program to redraw the entire Accelerometer_Gui.
-    auto win = get_window();
-    if (win) {
-        Gdk::Rectangle r(0, 0, get_allocation().get_width(), get_allocation().get_height());
-        win->invalidate_rect(r, false);
-        // acc.set_data(cur_time);
-    }
-
-    if (cur_time >= 30)
-        // destroy program
-        return false;
+    
     return true;
 }
