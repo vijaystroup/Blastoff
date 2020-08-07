@@ -12,7 +12,7 @@
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <child>
-          <object class="GtkDrawingArea" id="draw_acc">
+          <object class="GtkDrawingArea" id="draw_thrust">
             <property name="width_request">250</property>
             <property name="height_request">150</property>
             <property name="visible">True</property>
@@ -49,12 +49,12 @@
           </packing>
         </child>
         <child>
-          <object class="GtkLabel" id="label_acc">
+          <object class="GtkLabel" id="label_thrust">
             <property name="width_request">100</property>
             <property name="height_request">80</property>
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="label" translatable="yes">Acceleration</property>
+            <property name="label" translatable="yes">Thrust</property>
           </object>
           <packing>
             <property name="x">81</property>
@@ -198,12 +198,12 @@
           </packing>
         </child>
         <child>
-          <object class="GtkLabel" id="label_data_acc">
+          <object class="GtkLabel" id="label_data_thrust">
             <property name="width_request">76</property>
             <property name="height_request">20</property>
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="label" translatable="yes">50 kms^-2</property>
+            <property name="label" translatable="yes">50 %</property>
             <property name="justify">center</property>
           </object>
           <packing>

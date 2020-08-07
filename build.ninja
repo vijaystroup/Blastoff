@@ -33,7 +33,7 @@ rule link
 build $bdir/main.o: cxx $sdir/main.cc
 build $bdir/clock.o: cxx $guidir/lib/clock.cc
 ### sensors ###
-build $bdir/accelerometer.o: cxx $sensorsdir/lib/accelerometer.cc
+build $bdir/thrust_meter.o: cxx $sensorsdir/lib/thrust_meter.cc
 build $bdir/altimeter.o: cxx $sensorsdir/lib/altimeter.cc
 build $bdir/barometer.o: cxx $sensorsdir/lib/barometer.cc
 build $bdir/thermometer.o: cxx $sensorsdir/lib/thermometer.cc
@@ -41,10 +41,10 @@ build $bdir/velocimeter.o: cxx $sensorsdir/lib/velocimeter.cc
 ### gui ###
 build $bdir/time_handle.o: cxx $guidir/lib/time_handle.cc
 build $bdir/callback.o: cxx $guidir/lib/callback.cc
-build $bdir/draw_acc_area.o: cxx $guidir/lib/draw_acc_area.cc
+build $bdir/draw_thrust_area.o: cxx $guidir/lib/draw_thrust_area.cc
 build $bdir/draw_vel_area.o: cxx $guidir/lib/draw_vel_area.cc
 build $bdir/draw_pres_area.o: cxx $guidir/lib/draw_pres_area.cc
 
 build $bdir/$target: link $bdir/main.o $bdir/clock.o $
-    $bdir/accelerometer.o $bdir/altimeter.o $bdir/barometer.o $bdir/thermometer.o $bdir/velocimeter.o $
-    $bdir/time_handle.o $bdir/callback.o $bdir/draw_acc_area.o $bdir/draw_vel_area.o $bdir/draw_pres_area.o
+    $bdir/thrust_meter.o $bdir/altimeter.o $bdir/barometer.o $bdir/thermometer.o $bdir/velocimeter.o $
+    $bdir/time_handle.o $bdir/callback.o $bdir/draw_thrust_area.o $bdir/draw_vel_area.o $bdir/draw_pres_area.o

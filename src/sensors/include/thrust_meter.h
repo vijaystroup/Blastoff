@@ -1,10 +1,10 @@
-#ifndef ACCELEROMETER_H
-#define ACCELEROMETER_H
+#ifndef THRUST_METER_H
+#define THRUST_METER_H
 
 #include <string>
 #include "clock.h"
 
-class accelerometer {
+class Thrust_Meter {
 private:
     double data;
     double fake_data;
@@ -12,8 +12,8 @@ private:
 
 public:
     // constructor & destructor
-    accelerometer(Clock* clock);
-    ~accelerometer();
+    Thrust_Meter(Clock* clock);
+    ~Thrust_Meter();
 
     // data
     double get_data();

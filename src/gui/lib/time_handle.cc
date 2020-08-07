@@ -2,7 +2,7 @@
 #include <string>
 #include "time_handle.h"
 #include "clock.h"
-#include "draw_acc_area.h"
+#include "draw_thrust_area.h"
 
 // bool run(Gtk::Label* label_timer) {
 //     timer++;
@@ -23,7 +23,7 @@
 // }
 
 bool draw_time_handler(app_widgets* widgets) {
-    gtk_widget_queue_draw(widgets->w_draw_acc);
+    gtk_widget_queue_draw(widgets->w_draw_thrust);
     gtk_widget_queue_draw(widgets->w_draw_vel);
     gtk_widget_queue_draw(widgets->w_draw_pres);
 

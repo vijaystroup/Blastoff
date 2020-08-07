@@ -1,9 +1,9 @@
 #include <gtk/gtk.h>
 #include <cmath>
-#include "draw_acc_area.h"
-#include "accelerometer.h"
+#include "draw_thrust_area.h"
+#include "thrust_meter.h"
 
-bool draw_acc_area::draw(GtkWidget *widget, cairo_t *cr, accelerometer* acc) {
+bool draw_thrust_area::draw(GtkWidget *widget, cairo_t *cr, Thrust_Meter* thrust) {
     // constants
     const int width = 250;
     const int height = 150;
@@ -46,7 +46,7 @@ bool draw_acc_area::draw(GtkWidget *widget, cairo_t *cr, accelerometer* acc) {
     }
 
     // needle
-    double data = acc->get_data();
+    double data = thrust->get_data();
 
     cairo_save(cr);
     cairo_set_line_cap(cr, CAIRO_LINE_CAP_ROUND);
@@ -63,6 +63,6 @@ bool draw_acc_area::draw(GtkWidget *widget, cairo_t *cr, accelerometer* acc) {
     cairo_fill(cr);
     cairo_restore(cr);
 
-    acc->set_data();
+    thrust->set_data();
     return false;
 }

@@ -6,7 +6,7 @@
 
 typedef struct app_widgets {
     Clock* clock;
-    GtkWidget* w_draw_acc;
+    GtkWidget* w_draw_thrust;
     GtkWidget* w_draw_vel;
     GtkWidget* w_draw_pres;
     GtkWidget* w_label_data_acc;
