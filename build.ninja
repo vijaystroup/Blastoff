@@ -31,7 +31,6 @@ rule link
     description = LINK $out
 
 build $bdir/main.o: cxx $sdir/main.cc
-build $bdir/time_handle.o: cxx $guidir/time_handle.cc
 ### sensors ###
 build $bdir/accelerometer.o: cxx $sensorsdir/lib/accelerometer.cc
 build $bdir/altimeter.o: cxx $sensorsdir/lib/altimeter.cc
@@ -39,12 +38,10 @@ build $bdir/barometer.o: cxx $sensorsdir/lib/barometer.cc
 build $bdir/thermometer.o: cxx $sensorsdir/lib/thermometer.cc
 build $bdir/velocimeter.o: cxx $sensorsdir/lib/velocimeter.cc
 ### gui ###
-build $bdir/accelerometer_gui.o: cxx $guidir/lib/accelerometer_gui.cc
-build $bdir/altimeter_gui.o: cxx $guidir/lib/altimeter_gui.cc
-build $bdir/barometer_gui.o: cxx $guidir/lib/barometer_gui.cc
-build $bdir/thermometer_gui.o: cxx $guidir/lib/thermometer_gui.cc
-build $bdir/velocimeter_gui.o: cxx $guidir/lib/velocimeter_gui.cc
+build $bdir/time_handle.o: cxx $guidir/lib/time_handle.cc
+build $bdir/callback.o: cxx $guidir/lib/callback.cc
+build $bdir/drawarea.o: cxx $guidir/lib/drawarea.cc
 
-build $bdir/$target: link $bdir/main.o $bdir/time_handle.o $
-    $bdir/accelerometer_gui.o $bdir/altimeter_gui.o $bdir/barometer_gui.o $bdir/thermometer_gui.o $bdir/velocimeter_gui.o $
-    $bdir/accelerometer.o $bdir/altimeter.o $bdir/barometer.o $bdir/thermometer.o $bdir/velocimeter.o
+build $bdir/$target: link $bdir/main.o $
+    $bdir/accelerometer.o $bdir/altimeter.o $bdir/barometer.o $bdir/thermometer.o $bdir/velocimeter.o $
+    $bdir/time_handle.o $bdir/callback.o $bdir/drawarea.o
