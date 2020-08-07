@@ -2,7 +2,6 @@
 #include <string>
 #include "time_handle.h"
 #include "clock.h"
-#include "draw_thrust_area.h"
 
 // bool run(Gtk::Label* label_timer) {
 //     timer++;

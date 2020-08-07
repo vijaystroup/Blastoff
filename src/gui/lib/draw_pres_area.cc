@@ -1,8 +1,9 @@
 #include <gtk/gtk.h>
 #include <cmath>
 #include "draw_pres_area.h"
+#include "barometer.h"
 
-bool draw_pres_area::draw(GtkWidget *widget, cairo_t *cr, gpointer data) {
+bool draw_pres_area::draw(GtkWidget *widget, cairo_t *cr, Barometer* pres) {
     // constants
     const int width = 250;
     const int height = 150;
@@ -45,23 +46,14 @@ bool draw_pres_area::draw(GtkWidget *widget, cairo_t *cr, gpointer data) {
     }
 
     // needle
-    time_t rawtime;
-    time(&rawtime);
-    struct tm * timeinfo = localtime (&rawtime);
-
-    double seconds= timeinfo->tm_sec * M_PI / 30;
-    // double data = acc.get_data() * M_PI / 30;
+    double data = pres->get_data();
 
     cairo_save(cr);
     cairo_set_line_cap(cr, CAIRO_LINE_CAP_ROUND);
     cairo_save(cr);
     cairo_set_source_rgb(cr, 0.0, 0.5, 1.0); // lightblue
     cairo_move_to(cr, 0, 0);
-    // cr->line_to(sin(0) * (radius * 0.95), -cos(0) * (radius * 0.95));
-    cairo_line_to(cr,
-        sin(seconds) * (radius * 0.95),
-        -cos(seconds) * (radius * 0.95)
-    );
+    cairo_line_to(cr, radius*cos(data), -radius*sin(data));
     cairo_stroke(cr);
     cairo_restore(cr);
 
@@ -71,5 +63,6 @@ bool draw_pres_area::draw(GtkWidget *widget, cairo_t *cr, gpointer data) {
     cairo_fill(cr);
     cairo_restore(cr);
 
+    pres->set_data();
     return false;
 }
