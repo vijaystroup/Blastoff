@@ -20,6 +20,7 @@ typedef struct app_widgets {
     GtkWidget* w_label_timer;
 } app_widgets;
 
+bool short_time_handler(app_widgets* widgets);
 bool time_handler(app_widgets* widgets);
 bool button_launch_clicked_cb(GtkWidget* button, app_widgets* widgets);
 

@@ -1,6 +1,7 @@
 #include <gtk/gtk.h>
 #include "time_handle.h"
 #include "thrust_meter.h"
+#include "velocimeter.h"
 #include "draw_thrust_area.h"
 #include "draw_vel_area.h"
 #include "draw_pres_area.h"
@@ -15,7 +16,9 @@ int main(int argc, char *argv[]) {
     app_widgets* widgets = g_slice_new(app_widgets);
     widgets->clock = new Clock();
     
+    // data meters
     Thrust_Meter* thrust = new Thrust_Meter(widgets->clock);
+    Velocimeter*  vel    = new Velocimeter(widgets->clock);
 
     // create application
     gtk_init(&argc, &argv);
@@ -28,7 +31,7 @@ int main(int argc, char *argv[]) {
     auto win = GTK_WIDGET(gtk_builder_get_object(builder, "window"));    
     if (win) {
         // get widgets
-        widgets->w_draw_thrust         = GTK_WIDGET(gtk_builder_get_object(builder, "draw_thrust"));
+        widgets->w_draw_thrust      = GTK_WIDGET(gtk_builder_get_object(builder, "draw_thrust"));
         widgets->w_draw_vel         = GTK_WIDGET(gtk_builder_get_object(builder, "draw_vel"));
         widgets->w_draw_pres        = GTK_WIDGET(gtk_builder_get_object(builder, "draw_pres"));
         widgets->w_label_data_acc   = GTK_WIDGET(gtk_builder_get_object(builder, "label_data_thrust"));
@@ -46,7 +49,7 @@ int main(int argc, char *argv[]) {
         g_signal_connect(win, "destroy", G_CALLBACK(app_destroy), NULL);
         g_signal_connect(widgets->w_button_launch, "clicked", G_CALLBACK(button_launch_clicked_cb), widgets);
         g_signal_connect(widgets->w_draw_thrust, "draw", G_CALLBACK(draw_thrust_area::draw), thrust);
-        g_signal_connect(widgets->w_draw_vel, "draw", G_CALLBACK(draw_vel_area::draw), nullptr);
+        g_signal_connect(widgets->w_draw_vel, "draw", G_CALLBACK(draw_vel_area::draw), vel);
         g_signal_connect(widgets->w_draw_pres, "draw", G_CALLBACK(draw_pres_area::draw), nullptr);
 
         // run app
