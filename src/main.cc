@@ -29,34 +29,34 @@ int main(int argc, char *argv[]) {
     gtk_init(&argc, &argv);
 
     // get the refrence builder
-    auto refBuilder = gtk_builder_new();
-    gtk_builder_add_from_file(refBuilder, glade_file, NULL);
+    auto builder = gtk_builder_new();
+    gtk_builder_add_from_file(builder, glade_file, NULL);
 
     // add the glade window and widgets
-    auto win = GTK_WIDGET(gtk_builder_get_object(refBuilder, "window"));
+    auto win = GTK_WIDGET(gtk_builder_get_object(builder, "window"));
     g_signal_connect(win, "destroy", G_CALLBACK(app_destroy), NULL);
-    gtk_builder_connect_signals(refBuilder, widgets);
     if (win) {
-        // setup and run app
-        widgets->w_draw_acc;
-        widgets->w_draw_vel;
-        widgets->w_draw_pres;
-        widgets->w_label_data_acc;
-        widgets->w_label_data_vel;
-        widgets->w_label_data_pres;
-        widgets->w_label_data_alt;
-        widgets->w_label_data_temp;
-        widgets->w_progress_alt;
-        widgets->w_progress_temp;
-        widgets->w_button_launch;
-        widgets->w_label_timer;
+        // connect widgets
+        widgets->w_draw_acc         = GTK_WIDGET(gtk_builder_get_object(builder, "draw_acc"));
+        widgets->w_draw_vel         = GTK_WIDGET(gtk_builder_get_object(builder, "draw_vel"));
+        widgets->w_draw_pres        = GTK_WIDGET(gtk_builder_get_object(builder, "draw_pres"));
+        widgets->w_label_data_acc   = GTK_WIDGET(gtk_builder_get_object(builder, "label_data_acc"));
+        widgets->w_label_data_vel   = GTK_WIDGET(gtk_builder_get_object(builder, "label_data_vel"));
+        widgets->w_label_data_pres  = GTK_WIDGET(gtk_builder_get_object(builder, "label_data_pres"));
+        widgets->w_label_data_alt   = GTK_WIDGET(gtk_builder_get_object(builder, "label_data_alt"));
+        widgets->w_label_data_temp  = GTK_WIDGET(gtk_builder_get_object(builder, "label_data_temp"));
+        widgets->w_progress_alt     = GTK_WIDGET(gtk_builder_get_object(builder, "progress_alt"));
+        widgets->w_progress_temp    = GTK_WIDGET(gtk_builder_get_object(builder, "progress_temp"));
+        widgets->w_button_launch    = GTK_WIDGET(gtk_builder_get_object(builder, "button_launch"));
+        widgets->w_label_timer      = GTK_WIDGET(gtk_builder_get_object(builder, "label_timer"));\
+        gtk_builder_connect_signals(builder, widgets);
+        g_object_unref(builder);
 
         gtk_window_set_resizable(GTK_WINDOW(win), false);
         gtk_widget_show(win);
         gtk_main();
     }
 
-    g_object_unref(refBuilder);
     g_slice_free(app_widgets, widgets);
     return 0;
 }
