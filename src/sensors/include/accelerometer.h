@@ -1,17 +1,23 @@
 #ifndef ACCELEROMETER_H
 #define ACCELEROMETER_H
 
+#include <string>
+#include "clock.h"
+
 class accelerometer {
 private:
-    int data;
+    double data;
+    double fake_data;
+    Clock* clock;
 
 public:
-    // constructor
-    accelerometer();
+    // constructor & destructor
+    accelerometer(Clock* clock);
+    ~accelerometer();
 
     // data
-    int get_data();
-    void set_data(int timer);
+    double get_data();
+    void set_data();
 
     // to_string
     std::string to_string();

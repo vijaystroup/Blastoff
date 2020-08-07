@@ -2,8 +2,10 @@
 #define TIME_HANDLE_H
 
 #include <gtk/gtk.h>
+#include "clock.h"
 
 typedef struct app_widgets {
+    Clock* clock;
     GtkWidget* w_draw_acc;
     GtkWidget* w_draw_vel;
     GtkWidget* w_draw_pres;
