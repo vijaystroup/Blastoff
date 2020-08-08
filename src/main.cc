@@ -1,4 +1,5 @@
 #include <gtk/gtk.h>
+#include <string>
 #include "time_handle.h"
 #include "thrust_meter.h"
 #include "velocimeter.h"
@@ -10,6 +11,8 @@
 #include "draw_pres_area.h"
 #include <cmath>
 
+using std::string;
+
 void app_destroy() {
     gtk_main_quit();
 }
@@ -20,12 +23,19 @@ int main(int argc, char *argv[]) {
     widgets->clock = new Clock();
     
     // data meters
-    Thrust_Meter* thrust = new Thrust_Meter(widgets->clock);
-    Velocimeter*  vel    = new Velocimeter(widgets->clock);
-    Barometer*    pres   = new Barometer(widgets->clock);
+    widgets->thrust = new Thrust_Meter(widgets->clock);
+    widgets->vel    = new Velocimeter(widgets->clock);
+    widgets->pres   = new Barometer(widgets->clock);
+    widgets->alt    = new Altimeter(widgets->clock);
+    widgets->temp   = new Thermometer(widgets->clock);
 
-    widgets->alt  = new Altimeter(widgets->clock);
-    widgets->temp = new Thermometer(widgets->clock);
+    // initalize strings
+    widgets->l_timer       = "T-3";
+    widgets->l_data_thrust = "0 %";
+    widgets->l_data_vel    = "0 kms^-1";
+    widgets->l_data_pres   = "100 kPa";
+    widgets->l_data_alt    = "200 m";
+    widgets->l_data_temp   = "35.9 C";
 
     // create application
     gtk_init(&argc, &argv);
@@ -55,9 +65,9 @@ int main(int argc, char *argv[]) {
         // connect necessary signals
         g_signal_connect(win, "destroy", G_CALLBACK(app_destroy), NULL);
         g_signal_connect(widgets->w_button_launch, "clicked", G_CALLBACK(button_launch_clicked_cb), widgets);
-        g_signal_connect(widgets->w_draw_thrust, "draw", G_CALLBACK(draw_thrust_area::draw), thrust);
-        g_signal_connect(widgets->w_draw_vel, "draw", G_CALLBACK(draw_vel_area::draw), vel);
-        g_signal_connect(widgets->w_draw_pres, "draw", G_CALLBACK(draw_pres_area::draw), pres);
+        g_signal_connect(widgets->w_draw_thrust, "draw", G_CALLBACK(draw_thrust_area::draw), widgets->thrust);
+        g_signal_connect(widgets->w_draw_vel, "draw", G_CALLBACK(draw_vel_area::draw), widgets->vel);
+        g_signal_connect(widgets->w_draw_pres, "draw", G_CALLBACK(draw_pres_area::draw), widgets->pres);
 
         // run app
         gtk_window_set_resizable(GTK_WINDOW(win), false);

@@ -17,9 +17,6 @@ double Thermometer::get_data() { return this->data; }
 void Thermometer::set_data() {
     int timer = this->clock->get_time();
 
-    // v FOR GETTING VALUE FROM PERCENTAGE v
-    // value = (percentage * (max - min) / 100) + min
-
     if (timer < 0)
         this->data = .95;
     else if (timer < 30)
@@ -27,6 +24,10 @@ void Thermometer::set_data() {
     else
         this->data = 0.95;
 }
+
+// min/max
+int Thermometer::get_min() { return this->min; }
+int Thermometer::get_max() { return this->max; }
 
 // to_string
 string Thermometer::to_string() {

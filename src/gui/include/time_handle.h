@@ -4,17 +4,28 @@
 #include <gtk/gtk.h>
 #include <string>
 #include "clock.h"
+#include "thrust_meter.h"
+#include "velocimeter.h"
+#include "barometer.h"
 #include "altimeter.h"
 #include "thermometer.h"
 
 typedef struct app_widgets {
     // object instances
     Clock* clock;
+    Thrust_Meter* thrust;
+    Velocimeter* vel;
+    Barometer* pres;
     Altimeter* alt;
     Thermometer* temp;
 
     // label texts
     std::string l_timer;
+    std::string l_data_thrust;
+    std::string l_data_vel;
+    std::string l_data_pres;
+    std::string l_data_alt;
+    std::string l_data_temp;
 
     // widgets
     GtkWidget* w_draw_thrust;

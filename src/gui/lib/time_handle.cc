@@ -1,10 +1,12 @@
 #include <gtk/gtk.h>
 #include <string>
+#include <math.h>
 #include "time_handle.h"
 #include "clock.h"
 
 using std::string;
 
+#include <cmath>
 bool short_time_handler(app_widgets* widgets) {
     if (widgets->clock->get_time() > 30) return false;
 
@@ -20,9 +22,24 @@ bool short_time_handler(app_widgets* widgets) {
     widgets->temp->set_data();
 
     // update data labels
-    string xd = "xd";
-    xd = "omg";
-    gtk_label_set_text((GtkLabel*)widgets->w_label_data_thrust, xd.c_str());
+    // widgets->l_data_thrust = std::to_string(widgets->) + " %";
+    // widgets->l_data_vel    = std::to_string + " km^-1";
+    // widgets->l_data_pres   = std::to_string + " kPa";
+    widgets->l_data_alt    = (
+        std::to_string(widgets->alt->get_data() * (widgets->alt->get_max() - widgets->alt->get_min()) + widgets->alt->get_min()) + " m"
+    );
+    widgets->l_data_temp   = (
+        std::to_string(widgets->temp->get_data() * (widgets->temp->get_max() - widgets->temp->get_min()) + widgets->temp->get_min()) + " C"
+    );
+    
+
+
+
+    gtk_label_set_text((GtkLabel*)widgets->w_label_data_thrust, widgets->l_data_thrust.c_str());
+    gtk_label_set_text((GtkLabel*)widgets->w_label_data_vel, widgets->l_data_vel.c_str());
+    gtk_label_set_text((GtkLabel*)widgets->w_label_data_pres, widgets->l_data_pres.c_str());
+    gtk_label_set_text((GtkLabel*)widgets->w_label_data_alt, widgets->l_data_alt.c_str());
+    gtk_label_set_text((GtkLabel*)widgets->w_label_data_temp, widgets->l_data_temp.c_str());
 
     return true;
 }
@@ -57,7 +74,6 @@ bool time_handler(app_widgets* widgets) {
 bool button_launch_clicked_cb(GtkWidget* button, app_widgets* widgets) {
     // show timer
     gtk_widget_hide(button);
-    widgets->l_timer = "T-3";
     gtk_label_set_text((GtkLabel*)widgets->w_label_timer, widgets->l_timer.c_str());
     gtk_widget_show(widgets->w_label_timer);
 

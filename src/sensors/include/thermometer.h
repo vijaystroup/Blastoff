@@ -19,6 +19,10 @@ public:
     double get_data();
     void set_data();
 
+    // min/max
+    int get_min();
+    int get_max();
+
     // to_string
     std::string to_string();
 };

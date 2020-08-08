@@ -25,6 +25,10 @@ void Altimeter::set_data() {
         this->data = 0.05;
 }
 
+// min/max
+int Altimeter::get_min() { return this->min; }
+int Altimeter::get_max() { return this->max; }
+
 // to_string
 string Altimeter::to_string() {
     return "Altimeter: " + std::to_string(get_data());
