@@ -9,6 +9,7 @@ using std::string;
 Velocimeter::Velocimeter(Clock* clock) {
     this->data = 0.0;
     this->fake_data = 50.0;
+    this->fake_label_data = 0.0;
     this->clock = clock;
 }
 Velocimeter::~Velocimeter() {}
@@ -24,10 +25,14 @@ void Velocimeter::set_data() {
     else if (timer < 30) {
         this->fake_data = this->fake_data - (this->fake_data*0.005);
         this->data = this->fake_data * rad_perc;
+        fake_label_data++;
     }
     else
         this->data = 50 * rad_perc;
 }
+
+// fake data
+double Velocimeter::get_fake_label_data() { return this->fake_label_data; }
 
 // to_string
 string Velocimeter::to_string() {
