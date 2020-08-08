@@ -4,6 +4,7 @@
 #include "velocimeter.h"
 #include "barometer.h"
 #include "altimeter.h"
+#include "thermometer.h"
 #include "draw_thrust_area.h"
 #include "draw_vel_area.h"
 #include "draw_pres_area.h"
@@ -23,7 +24,8 @@ int main(int argc, char *argv[]) {
     Velocimeter*  vel    = new Velocimeter(widgets->clock);
     Barometer*    pres   = new Barometer(widgets->clock);
 
-    widgets->alt = new Altimeter(widgets->clock);
+    widgets->alt  = new Altimeter(widgets->clock);
+    widgets->temp = new Thermometer(widgets->clock);
 
     // create application
     gtk_init(&argc, &argv);

@@ -1,27 +1,38 @@
 #include <string>
+#include <cmath>
 #include "thermometer.h"
+#include "clock.h"
 
 using std::string;
 
-// constructor
-thermometer::thermometer(string name, int min, int max) {
-    set_name(name);
-    this->data = 0;
-    this->min = min;
-    this->max = max;
+// constructor & destructor
+Thermometer::Thermometer(Clock* clock) {
+    this->data = 0.95;
+    this->clock = clock;
 }
-
-// name
-string thermometer::get_name() { return this->name; }
-void thermometer::set_name(string name) { this->name = name; }
+Thermometer::~Thermometer() {}
 
 // data
-int thermometer::get_data() { return this->data; }
-void thermometer::set_data() {
-    this->data = this->min + (rand() % (this->max - this->min + 1));
+double Thermometer::get_data() { return this->data; }
+void Thermometer::set_data() {
+    int timer = this->clock->get_time();
+    srand(this->clock->get_time());
+    double random = this->min + (rand() % (this->max - this->min + 1));
+
+    // v FOR GETTING VALUE FROM PERCENTAGE v
+    // value = (percentage * (max - min) / 100) + min
+
+    // this->data = (random - this->min) / (this->max - this->min);
+    if (timer < 0)
+        this->data = .95;
+    else if (timer < 30)
+        this->data = this->data - 0.002;
+    else
+        this->data = 0.95;
+    printf("thermo per %f\n", this->data);
 }
 
 // to_string
-string thermometer::to_string() {
-    return get_name() + ": " + std::to_string(get_data());
+string Thermometer::to_string() {
+    return "Thermometer: " + std::to_string(get_data());
 }

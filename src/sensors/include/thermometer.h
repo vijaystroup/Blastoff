@@ -2,23 +2,21 @@
 #define THERMOMETER_H
 
 #include <string>
+#include "clock.h"
 
-class thermometer {
+class Thermometer {
 private:
-    std::string name;
-    int data;
-    int min, max;
+    double data;
+    Clock* clock;
+    int min = 15, max = 37;
 
 public:
     // constructor
-    thermometer(std::string name, int min, int max);
-
-    // name
-    std::string get_name();
-    void set_name(std::string name);
+    Thermometer(Clock* clock);
+    ~Thermometer();
 
     // data
-    int get_data();
+    double get_data();
     void set_data();
 
     // to_string

@@ -31,7 +31,9 @@ bool short_time_handler(app_widgets* widgets) {
 
     // queue progress bars
     gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(widgets->w_progress_alt), widgets->alt->get_data());
+    gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(widgets->w_progress_temp), widgets->temp->get_data());
     widgets->alt->set_data();
+    widgets->temp->set_data();
 
     // update data labels
 
