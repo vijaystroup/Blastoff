@@ -123,7 +123,7 @@
             <property name="height_request">30</property>
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="fraction">0.7700000020116567</property>
+            <property name="fraction">0.05</property>
           </object>
           <packing>
             <property name="x">199</property>
@@ -215,7 +215,7 @@
             <property name="height_request">20</property>
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="label" translatable="yes">300 ms^-1</property>
+            <property name="label" translatable="yes">300 kms^-1</property>
             <property name="justify">center</property>
           </object>
           <packing>

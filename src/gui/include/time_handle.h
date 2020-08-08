@@ -3,9 +3,14 @@
 
 #include <gtk/gtk.h>
 #include "clock.h"
+#include "altimeter.h"
 
 typedef struct app_widgets {
+    // object instances
     Clock* clock;
+    Altimeter* alt;
+
+    // widgets
     GtkWidget* w_draw_thrust;
     GtkWidget* w_draw_vel;
     GtkWidget* w_draw_pres;

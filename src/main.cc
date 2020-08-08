@@ -3,6 +3,7 @@
 #include "thrust_meter.h"
 #include "velocimeter.h"
 #include "barometer.h"
+#include "altimeter.h"
 #include "draw_thrust_area.h"
 #include "draw_vel_area.h"
 #include "draw_pres_area.h"
@@ -21,6 +22,8 @@ int main(int argc, char *argv[]) {
     Thrust_Meter* thrust = new Thrust_Meter(widgets->clock);
     Velocimeter*  vel    = new Velocimeter(widgets->clock);
     Barometer*    pres   = new Barometer(widgets->clock);
+
+    widgets->alt = new Altimeter(widgets->clock);
 
     // create application
     gtk_init(&argc, &argv);
@@ -47,7 +50,7 @@ int main(int argc, char *argv[]) {
         widgets->w_label_timer      = GTK_WIDGET(gtk_builder_get_object(builder, "label_timer"));
         g_object_unref(builder);
 
-        // connect signals
+        // connect necessary signals
         g_signal_connect(win, "destroy", G_CALLBACK(app_destroy), NULL);
         g_signal_connect(widgets->w_button_launch, "clicked", G_CALLBACK(button_launch_clicked_cb), widgets);
         g_signal_connect(widgets->w_draw_thrust, "draw", G_CALLBACK(draw_thrust_area::draw), thrust);
