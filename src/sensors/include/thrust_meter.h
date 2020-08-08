@@ -6,9 +6,10 @@
 
 class Thrust_Meter {
 private:
+    Clock* clock;
     double data;
     double fake_data;
-    Clock* clock;
+    double fake_label_data;
 
 public:
     // constructor & destructor
@@ -18,6 +19,9 @@ public:
     // data
     double get_data();
     void set_data();
+
+    // fake data
+    double get_fake_label_data();
 
     // to_string
     std::string to_string();

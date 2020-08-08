@@ -24,7 +24,9 @@ bool short_time_handler(app_widgets* widgets) {
     widgets->temp->set_data();
 
     // update data labels
-    // widgets->l_data_thrust = std::to_string(widgets->) + " %";
+    widgets->l_data_thrust = (
+        format("{:.2f}", widgets->thrust->get_fake_label_data()) + " %"
+    );
     widgets->l_data_vel    = (
         format("{:.2f}", pow(widgets->vel->get_fake_label_data(), 3) * .0002) + " m/s"
     );
