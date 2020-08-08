@@ -197,35 +197,35 @@
         </child>
         <child>
           <object class="GtkLabel" id="label_data_thrust">
-            <property name="width_request">76</property>
+            <property name="width_request">145</property>
             <property name="height_request">20</property>
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="label" translatable="yes">50 %</property>
+            <property name="label" translatable="yes">0 %</property>
             <property name="justify">center</property>
           </object>
           <packing>
-            <property name="x">96</property>
-            <property name="y">274</property>
+            <property name="x">58</property>
+            <property name="y">275</property>
           </packing>
         </child>
         <child>
           <object class="GtkLabel" id="label_data_vel">
-            <property name="width_request">85</property>
+            <property name="width_request">145</property>
             <property name="height_request">20</property>
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="label" translatable="yes">300 kms^-1</property>
+            <property name="label" translatable="yes">0 kms^-1</property>
             <property name="justify">center</property>
           </object>
           <packing>
-            <property name="x">356</property>
-            <property name="y">274</property>
+            <property name="x">323</property>
+            <property name="y">275</property>
           </packing>
         </child>
         <child>
           <object class="GtkLabel" id="label_data_pres">
-            <property name="width_request">39</property>
+            <property name="width_request">145</property>
             <property name="height_request">20</property>
             <property name="visible">True</property>
             <property name="can_focus">False</property>
@@ -233,7 +233,7 @@
             <property name="justify">center</property>
           </object>
           <packing>
-            <property name="x">656</property>
+            <property name="x">594</property>
             <property name="y">275</property>
           </packing>
         </child>

@@ -2,6 +2,7 @@
 #define TIME_HANDLE_H
 
 #include <gtk/gtk.h>
+#include <string>
 #include "clock.h"
 #include "altimeter.h"
 #include "thermometer.h"
@@ -12,11 +13,14 @@ typedef struct app_widgets {
     Altimeter* alt;
     Thermometer* temp;
 
+    // label texts
+    std::string l_timer;
+
     // widgets
     GtkWidget* w_draw_thrust;
     GtkWidget* w_draw_vel;
     GtkWidget* w_draw_pres;
-    GtkWidget* w_label_data_acc;
+    GtkWidget* w_label_data_thrust;
     GtkWidget* w_label_data_vel;
     GtkWidget* w_label_data_pres;
     GtkWidget* w_label_data_alt;

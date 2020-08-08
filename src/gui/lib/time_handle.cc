@@ -3,23 +3,7 @@
 #include "time_handle.h"
 #include "clock.h"
 
-// bool run(Gtk::Label* label_timer) {
-//     timer++;
-
-//     if (timer > 5) {
-//         label_timer->set_text("Launch Complete");
-//         return false;
-//     }
-
-//     if (timer < 0)
-//         label_timer->set_text("T" + std::to_string(timer));
-//     else if (timer == 0)
-//         label_timer->set_text("T-" + std::to_string(timer));
-//     else
-//         label_timer->set_text("T+" + std::to_string(timer));
-
-//     return true;
-// }
+using std::string;
 
 bool short_time_handler(app_widgets* widgets) {
     if (widgets->clock->get_time() > 30) return false;
@@ -36,15 +20,36 @@ bool short_time_handler(app_widgets* widgets) {
     widgets->temp->set_data();
 
     // update data labels
-
+    string xd = "xd";
+    xd = "omg";
+    gtk_label_set_text((GtkLabel*)widgets->w_label_data_thrust, xd.c_str());
 
     return true;
 }
 
 bool time_handler(app_widgets* widgets) {
-    if (widgets->clock->get_time() > 30) return false;
-
     widgets->clock->set_time();
+    int timer = widgets->clock->get_time();
+
+    if (timer > 30) {
+        widgets->l_timer = "Launch Complete";
+        gtk_label_set_text((GtkLabel*)widgets->w_label_timer, widgets->l_timer.c_str());
+        return false;
+    }
+
+    if (timer < 0) {
+        widgets->l_timer = "T" + std::to_string(timer);
+
+        gtk_label_set_text((GtkLabel*)widgets->w_label_timer, widgets->l_timer.c_str());
+    }
+    else if (timer == 0) {
+        widgets->l_timer = "T-" + std::to_string(timer);
+        gtk_label_set_text((GtkLabel*)widgets->w_label_timer, widgets->l_timer.c_str());
+    }
+    else {
+        widgets->l_timer = "T+" + std::to_string(timer);
+        gtk_label_set_text((GtkLabel*)widgets->w_label_timer, widgets->l_timer.c_str());
+    }
     
     return true;
 }
@@ -52,7 +57,8 @@ bool time_handler(app_widgets* widgets) {
 bool button_launch_clicked_cb(GtkWidget* button, app_widgets* widgets) {
     // show timer
     gtk_widget_hide(button);
-    gtk_label_set_text((GtkLabel*)widgets->w_label_timer, "T");
+    widgets->l_timer = "T-3";
+    gtk_label_set_text((GtkLabel*)widgets->w_label_timer, widgets->l_timer.c_str());
     gtk_widget_show(widgets->w_label_timer);
 
     // start loops

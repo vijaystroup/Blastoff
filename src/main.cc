@@ -38,18 +38,18 @@ int main(int argc, char *argv[]) {
     auto win = GTK_WIDGET(gtk_builder_get_object(builder, "window"));    
     if (win) {
         // get widgets
-        widgets->w_draw_thrust      = GTK_WIDGET(gtk_builder_get_object(builder, "draw_thrust"));
-        widgets->w_draw_vel         = GTK_WIDGET(gtk_builder_get_object(builder, "draw_vel"));
-        widgets->w_draw_pres        = GTK_WIDGET(gtk_builder_get_object(builder, "draw_pres"));
-        widgets->w_label_data_acc   = GTK_WIDGET(gtk_builder_get_object(builder, "label_data_thrust"));
-        widgets->w_label_data_vel   = GTK_WIDGET(gtk_builder_get_object(builder, "label_data_vel"));
-        widgets->w_label_data_pres  = GTK_WIDGET(gtk_builder_get_object(builder, "label_data_pres"));
-        widgets->w_label_data_alt   = GTK_WIDGET(gtk_builder_get_object(builder, "label_data_alt"));
-        widgets->w_label_data_temp  = GTK_WIDGET(gtk_builder_get_object(builder, "label_data_temp"));
-        widgets->w_progress_alt     = GTK_WIDGET(gtk_builder_get_object(builder, "progress_alt"));
-        widgets->w_progress_temp    = GTK_WIDGET(gtk_builder_get_object(builder, "progress_temp"));
-        widgets->w_button_launch    = GTK_WIDGET(gtk_builder_get_object(builder, "button_launch"));
-        widgets->w_label_timer      = GTK_WIDGET(gtk_builder_get_object(builder, "label_timer"));
+        widgets->w_draw_thrust       = GTK_WIDGET(gtk_builder_get_object(builder, "draw_thrust"));
+        widgets->w_draw_vel          = GTK_WIDGET(gtk_builder_get_object(builder, "draw_vel"));
+        widgets->w_draw_pres         = GTK_WIDGET(gtk_builder_get_object(builder, "draw_pres"));
+        widgets->w_label_data_thrust = GTK_WIDGET(gtk_builder_get_object(builder, "label_data_thrust"));
+        widgets->w_label_data_vel    = GTK_WIDGET(gtk_builder_get_object(builder, "label_data_vel"));
+        widgets->w_label_data_pres   = GTK_WIDGET(gtk_builder_get_object(builder, "label_data_pres"));
+        widgets->w_label_data_alt    = GTK_WIDGET(gtk_builder_get_object(builder, "label_data_alt"));
+        widgets->w_label_data_temp   = GTK_WIDGET(gtk_builder_get_object(builder, "label_data_temp"));
+        widgets->w_progress_alt      = GTK_WIDGET(gtk_builder_get_object(builder, "progress_alt"));
+        widgets->w_progress_temp     = GTK_WIDGET(gtk_builder_get_object(builder, "progress_temp"));
+        widgets->w_button_launch     = GTK_WIDGET(gtk_builder_get_object(builder, "button_launch"));
+        widgets->w_label_timer       = GTK_WIDGET(gtk_builder_get_object(builder, "label_timer"));
         g_object_unref(builder);
 
         // connect necessary signals
