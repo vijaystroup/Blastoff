@@ -10,12 +10,11 @@ guidir = $sdir/gui
 
 fmt_hdr = ~/.source/include
 fmt_lib = ~/.source/lib
-sensors_hdr = $sensorsdir/include
-gui_hdr = $guidir/include
+project_hdr = $sdir/include
 
 cxx = /usr/bin/clang++
 cxx_flags = -std=c++17 -Wall $$(pkg-config --cflags gtkmm-3.0 gtk+-3.0 gmodule-2.0) -I $fmt_hdr $
-    -I $sensors_hdr -I $gui_hdr
+    -I $project_hdr
 
 ld_flags = $cxx_flags -L $fmt_lib $$(pkg-config --libs gtkmm-3.0 gtk+-3.0 gmodule-2.0)
 libs = -lfmt
@@ -31,18 +30,18 @@ rule link
     description = LINK $out
 
 build $bdir/main.o: cxx $sdir/main.cc
-build $bdir/clock.o: cxx $guidir/lib/clock.cc
+build $bdir/clock.o: cxx $guidir/clock.cc
 ### sensors ###
-build $bdir/thrust_meter.o: cxx $sensorsdir/lib/thrust_meter.cc
-build $bdir/altimeter.o: cxx $sensorsdir/lib/altimeter.cc
-build $bdir/barometer.o: cxx $sensorsdir/lib/barometer.cc
-build $bdir/thermometer.o: cxx $sensorsdir/lib/thermometer.cc
-build $bdir/velocimeter.o: cxx $sensorsdir/lib/velocimeter.cc
+build $bdir/thrust_meter.o: cxx $sensorsdir/thrust_meter.cc
+build $bdir/altimeter.o: cxx $sensorsdir/altimeter.cc
+build $bdir/barometer.o: cxx $sensorsdir/barometer.cc
+build $bdir/thermometer.o: cxx $sensorsdir/thermometer.cc
+build $bdir/velocimeter.o: cxx $sensorsdir/velocimeter.cc
 ### gui ###
-build $bdir/time_handle.o: cxx $guidir/lib/time_handle.cc
-build $bdir/draw_thrust_area.o: cxx $guidir/lib/draw_thrust_area.cc
-build $bdir/draw_vel_area.o: cxx $guidir/lib/draw_vel_area.cc
-build $bdir/draw_pres_area.o: cxx $guidir/lib/draw_pres_area.cc
+build $bdir/time_handle.o: cxx $guidir/time_handle.cc
+build $bdir/draw_thrust_area.o: cxx $guidir/draw_thrust_area.cc
+build $bdir/draw_vel_area.o: cxx $guidir/draw_vel_area.cc
+build $bdir/draw_pres_area.o: cxx $guidir/draw_pres_area.cc
 
 build $bdir/$target: link $bdir/main.o $bdir/clock.o $
     $bdir/thrust_meter.o $bdir/altimeter.o $bdir/barometer.o $bdir/thermometer.o $bdir/velocimeter.o $

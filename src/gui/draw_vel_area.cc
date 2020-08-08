@@ -17,7 +17,7 @@ bool draw_vel_area::draw(GtkWidget *widget, cairo_t *cr, Velocimeter* vel) {
     // arc
     cairo_restore(cr);
     cairo_set_source_rgb(cr, 0.8, 0.8, 0.8);
-    cairo_arc(cr, 0, 0, radius, M_PI, 2 * M_PI);
+    cairo_arc(cr, 0, 0, radius, M_PI - M_PI/50, 2 * M_PI + M_PI/50);
     cairo_save(cr);
     cairo_set_source_rgb(cr, 0.8, 0.8, 0.8);
     cairo_fill_preserve(cr);
@@ -53,7 +53,7 @@ bool draw_vel_area::draw(GtkWidget *widget, cairo_t *cr, Velocimeter* vel) {
     cairo_save(cr);
     cairo_set_source_rgb(cr, 0.0, 0.5, 1.0); // lightblue
     cairo_move_to(cr, 0, 0);
-    cairo_line_to(cr, radius*cos(data), -radius*sin(data));
+    cairo_line_to(cr, radius*cos(data) * .92, -radius*sin(data) * .92);
     cairo_stroke(cr);
     cairo_restore(cr);
 
