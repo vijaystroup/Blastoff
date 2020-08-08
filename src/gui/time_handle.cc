@@ -8,8 +8,11 @@
 using std::string;
 using fmt::format;
 
-#include <cmath>
 bool short_time_handler(app_widgets* widgets) {
+    /* executed every 100 miliseconds, queue drawing areas, progress bars, and
+    update all the data labels */
+
+    // if clock > 30, return false (quit loop)
     if (widgets->clock->get_time() > 30) return false;
 
     // queue drawing areas
@@ -23,7 +26,7 @@ bool short_time_handler(app_widgets* widgets) {
     widgets->alt->set_data();
     widgets->temp->set_data();
 
-    // update data labels
+    // update struct data label texts
     widgets->l_data_thrust = (
         format("{:.2f}", widgets->thrust->get_fake_label_data()) + " %"
     );
@@ -40,9 +43,7 @@ bool short_time_handler(app_widgets* widgets) {
         format("{:.2f}", widgets->temp->get_data() * (widgets->temp->get_max() - widgets->temp->get_min()) + widgets->temp->get_min()) + " C"
     );
     
-
-
-
+    // update data labels
     gtk_label_set_text((GtkLabel*)widgets->w_label_data_thrust, widgets->l_data_thrust.c_str());
     gtk_label_set_text((GtkLabel*)widgets->w_label_data_vel, widgets->l_data_vel.c_str());
     gtk_label_set_text((GtkLabel*)widgets->w_label_data_pres, widgets->l_data_pres.c_str());
@@ -53,9 +54,12 @@ bool short_time_handler(app_widgets* widgets) {
 }
 
 bool time_handler(app_widgets* widgets) {
+    /* executed every second, clock properties */
+
     widgets->clock->set_time();
     int timer = widgets->clock->get_time();
 
+    // if timer > 30, stop false (stop loop)
     if (timer > 30) {
         widgets->l_timer = "Launch Complete";
         gtk_label_set_text((GtkLabel*)widgets->w_label_timer, widgets->l_timer.c_str());
@@ -80,6 +84,9 @@ bool time_handler(app_widgets* widgets) {
 }
 
 bool button_launch_clicked_cb(GtkWidget* button, app_widgets* widgets) {
+    /* when launch button is clicked, change to timer label and start loops for
+    the clock and the drawings and data labels */
+
     // show timer
     gtk_widget_hide(button);
     gtk_label_set_text((GtkLabel*)widgets->w_label_timer, widgets->l_timer.c_str());

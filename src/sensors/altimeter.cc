@@ -15,6 +15,8 @@ Altimeter::~Altimeter() {}
 // data
 double Altimeter::get_data() { return this->data; }
 void Altimeter::set_data() {
+    /* fake sensor data gives an exponential function of altitude */
+
     int timer = this->clock->get_time();
 
     if (timer < 0)

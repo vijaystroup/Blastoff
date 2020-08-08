@@ -1,6 +1,8 @@
 #include "clock.h"
 
 Clock::Clock() {
+    /* inital time of clock is -3 */
+
     this->time = -3;
 }
 

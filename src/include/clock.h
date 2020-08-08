@@ -4,10 +4,12 @@
 class Clock {
 private:
     int time;
+
 public:
     Clock();
     ~Clock();
 
+    // time
     void set_time();
     int get_time();
 };

@@ -14,6 +14,8 @@
 using std::string;
 
 void app_destroy() {
+    /* quit and free main loop */
+
     gtk_main_quit();
 }
 

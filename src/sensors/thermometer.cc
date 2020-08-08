@@ -15,6 +15,8 @@ Thermometer::~Thermometer() {}
 // data
 double Thermometer::get_data() { return this->data; }
 void Thermometer::set_data() {
+    /* fake sensor data gives a linear function of temperature */
+
     int timer = this->clock->get_time();
 
     if (timer < 0)

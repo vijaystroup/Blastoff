@@ -16,6 +16,8 @@ Barometer::~Barometer() {}
 // data
 double Barometer::get_data() { return this->data; }
 void Barometer::set_data() {
+    /* fake sensor data gives a linearexponential function of air pressure */
+
     double const rad_perc = 0.062831853071796; // amount of radians in 1 percent
     int timer = this->clock->get_time();
 

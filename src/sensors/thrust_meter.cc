@@ -17,6 +17,8 @@ Thrust_Meter::~Thrust_Meter() {}
 // data
 double Thrust_Meter::get_data() { return this->data; }
 void Thrust_Meter::set_data() {
+    /* fake sensor data gives a linear function of thrust */
+
     double const rad_perc = 0.062831853071796; // amount of radians in 1 percent
     int timer = this->clock->get_time();
 

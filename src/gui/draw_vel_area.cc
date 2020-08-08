@@ -4,6 +4,8 @@
 #include "velocimeter.h"
 
 bool draw_vel_area::draw(GtkWidget *widget, cairo_t *cr, Velocimeter* vel) {
+    /* draw gauge and needle within velocity drawing area */
+
     // constants
     const int width = 250;
     const int height = 150;

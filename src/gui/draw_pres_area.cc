@@ -4,6 +4,8 @@
 #include "barometer.h"
 
 bool draw_pres_area::draw(GtkWidget *widget, cairo_t *cr, Barometer* pres) {
+    /* draw gauge and needle within pressure drawing area */
+
     // constants
     const int width = 250;
     const int height = 150;

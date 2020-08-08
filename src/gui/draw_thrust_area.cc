@@ -4,6 +4,8 @@
 #include "thrust_meter.h"
 
 bool draw_thrust_area::draw(GtkWidget *widget, cairo_t *cr, Thrust_Meter* thrust) {
+    /* draw gauge and needle within thrust drawing area */
+
     // constants
     const int width = 250;
     const int height = 150;
