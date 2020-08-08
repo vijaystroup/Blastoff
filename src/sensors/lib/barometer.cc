@@ -7,7 +7,7 @@ using std::string;
 
 // constructor & destructor
 Barometer::Barometer(Clock* clock) {
-    this->data = 0.0;
+    this->data = 0;
     this->fake_data = 5;
     this->clock = clock;
 }
@@ -28,6 +28,9 @@ void Barometer::set_data() {
     else
         this->data = 5 * rad_perc;
 }
+
+// get fake_data
+double Barometer::get_fake_data() { return this->fake_data; }
 
 // to_string
 string Barometer::to_string() {

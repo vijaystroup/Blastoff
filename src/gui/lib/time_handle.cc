@@ -1,10 +1,12 @@
 #include <gtk/gtk.h>
+#include <fmt/core.h>
 #include <string>
 #include <math.h>
 #include "time_handle.h"
 #include "clock.h"
 
 using std::string;
+using fmt::format;
 
 #include <cmath>
 bool short_time_handler(app_widgets* widgets) {
@@ -24,12 +26,16 @@ bool short_time_handler(app_widgets* widgets) {
     // update data labels
     // widgets->l_data_thrust = std::to_string(widgets->) + " %";
     // widgets->l_data_vel    = std::to_string + " km^-1";
-    // widgets->l_data_pres   = std::to_string + " kPa";
+    widgets->l_data_pres   = (
+        format("{:.2f}", -(widgets->pres->get_fake_data() - 100)) + " kPa"
+        // std::to_string((int)-(widgets->pres->get_fake_data() - 100)) + " kPa"
+    );
     widgets->l_data_alt    = (
-        std::to_string(widgets->alt->get_data() * (widgets->alt->get_max() - widgets->alt->get_min()) + widgets->alt->get_min()) + " m"
+        format("{:.2f}", widgets->alt->get_data() * (widgets->alt->get_max() - widgets->alt->get_min()) + widgets->alt->get_min()) + " m"
     );
     widgets->l_data_temp   = (
-        std::to_string(widgets->temp->get_data() * (widgets->temp->get_max() - widgets->temp->get_min()) + widgets->temp->get_min()) + " C"
+        format("{:.2f}", widgets->temp->get_data() * (widgets->temp->get_max() - widgets->temp->get_min()) + widgets->temp->get_min()) + " C"
+        // std::to_string(widgets->temp->get_data() * (widgets->temp->get_max() - widgets->temp->get_min()) + widgets->temp->get_min()) + " C"
     );
     
 

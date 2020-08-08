@@ -19,6 +19,9 @@ public:
     double get_data();
     void set_data();
 
+    // get fake_data
+    double get_fake_data();
+
     // to_string
     std::string to_string();
 };
