@@ -10,4 +10,4 @@
 
 <h2>Overview</h2>
 
-BlastOff is a graphical user interface for viewing rocket sensors during the launch phase of a rocekt.  The incoming data is just simulated without real sensors and the graphical user interface is representative of that data.  The "fake" sensors record the data of the rocket's thrust, velocity, air pressure, altitude, and temperature.
+BlastOff is a graphical user interface for viewing rocket sensors during the launch phase of a rocket.  The incoming data is just simulated without real sensors and the graphical user interface is representative of that data.  The "fake" sensors record the data of the rocket's thrust, velocity, air pressure, altitude, and temperature.
