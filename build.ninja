@@ -8,11 +8,11 @@ sdir = $root/src
 sensorsdir = $sdir/sensors
 guidir = $sdir/gui
 
-fmt_hdr = ~/.source/include
-fmt_lib = ~/.source/lib
+fmt_hdr = /mnt/d/code/.ccconfig/usr/local/include
+fmt_lib = /mnt/d/code/.ccconfig/usr/local/lib
 project_hdr = $sdir/include
 
-cxx = /usr/bin/clang++
+cxx = /usr/bin/clang++-10
 cxx_flags = -std=c++17 -Wall $$(pkg-config --cflags gtk+-3.0) -I $fmt_hdr $
     -I $project_hdr
 

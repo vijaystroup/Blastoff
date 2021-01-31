@@ -11,6 +11,9 @@
 #include "draw_pres_area.h"
 #include <cmath>
 
+#include <fmt/ranges.h>
+using fmt::print;
+
 using std::string;
 
 void app_destroy() {
@@ -20,6 +23,7 @@ void app_destroy() {
 }
 
 int main(int argc, char *argv[]) {
+    GError *g_error = NULL;
     auto glade_file = "src/gui/outline.glade";
     app_widgets* widgets = g_slice_new(app_widgets);
     widgets->clock = new Clock();
@@ -44,7 +48,11 @@ int main(int argc, char *argv[]) {
 
     // get the refrence builder
     auto builder = gtk_builder_new();
-    gtk_builder_add_from_file(builder, glade_file, NULL);
+    int rc = gtk_builder_add_from_file(builder, glade_file, &g_error);
+    if (rc == 0) {
+        print("{}\n", g_error->message);
+        exit(-1);
+    }
 
     // add the glade window and widgets
     auto win = GTK_WIDGET(gtk_builder_get_object(builder, "window"));    
