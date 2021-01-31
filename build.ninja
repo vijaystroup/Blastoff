@@ -16,7 +16,7 @@ cxx = /usr/bin/clang++-10
 cxx_flags = -std=c++17 -Wall $$(pkg-config --cflags gtk+-3.0) -I $fmt_hdr $
     -I $project_hdr
 
-ld_flags = $cxx_flags -L $fmt_lib $$(pkg-config --libs gtk+-3.0)
+ld_flags = $cxx_flags -Bstatic -L $fmt_lib $$(pkg-config --libs gtk+-3.0)
 libs = -lfmt
 
 rule cxx

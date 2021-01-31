@@ -1,3 +1,4 @@
+#include <fmt/ranges.h>
 #include <gtk/gtk.h>
 #include <string>
 #include "time_handle.h"
@@ -11,9 +12,7 @@
 #include "draw_pres_area.h"
 #include <cmath>
 
-#include <fmt/ranges.h>
 using fmt::print;
-
 using std::string;
 
 void app_destroy() {
